@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/ico/favicon-16x16.png">
+    <link rel="manifest" href="./img/ico/site.webmanifest">
+    <link rel="mask-icon" href="./img/ico/safari-pinned-tab.svg" color="#172b51">
+    <meta name="msapplication-TileColor" content="#172b51">
+    <meta name="theme-color" content="#172b51">
+    <title>Three.js Mirror Playground</title>
+</head>
+<body>
+    <div class="config">
+        <div class="background">
+            <span>Background</span>
+            <button id="removeBackground">HIDE</button>
+            <button id="showBackground">SHOW</button>
+        </div>
+        <div class="environment">
+            <select id="changeBackground">
+                <option value="1">Studio Hall</option>
+                <option value="2">Misty Pines</option>
+                <option value="3">Clear Sky</option>
+                <option value="4">Chinese Garden</option>
+                <option value="5">Beach</option>
+                <option value="6">Sea Sunset</option>
+                <option value="7">Fireplace</option>
+            </select>
+        </div>
+        <div class="fov">
+            <input id="selectFov" type="range" min="50" max="150" value="100">
+            <span id="fovValue">100</span>
+        </div>
+    </div>
+    <script src="./js/index.js" type="module"></script>
+</body>
+</html>
