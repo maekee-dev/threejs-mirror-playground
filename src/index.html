@@ -15,6 +15,10 @@
     <title>Three.js Mirror Playground</title>
 </head>
 <body>
+    <div class="loader" id="loader">
+        <span>Loading HDR file</span>
+        <div class="spinner"></div>
+    </div>
     <div class="config">
         <div class="background">
             <span>Background</span>
@@ -35,6 +39,10 @@
         <div class="fov">
             <input id="selectFov" type="range" min="50" max="150" value="100">
             <span id="fovValue">100</span>
+        </div>
+        <div class="dimension">
+            <input id="selectDimension" type="range" min="0" max="150" value="100">
+            <span id="dimensionValue">x1</span>
         </div>
     </div>
     <script src="./js/index.js" type="module"></script>

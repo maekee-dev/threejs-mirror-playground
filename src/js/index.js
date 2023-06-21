@@ -25,22 +25,19 @@ const loader = new RGBELoader()
 loader.load(hdrTextureURL, texture => {
     scene.background = texture,
     scene.environment = texture,
-    texture.mapping = THREE.EquirectangularReflectionMapping
+    texture.mapping = THREE.EquirectangularReflectionMapping,
+    document.getElementById('loader').style.display = 'none'
 })
 
 let sphere = new THREE.Mesh(
     new THREE.SphereGeometry(4, 100, 100),
-    /*new THREE.MeshStandardMaterial({
-        roughness: 0,
-        metalness: .5,
-        color: 0xffffff
-    })*/
     new THREE.MeshPhysicalMaterial({
         roughness: 0,
         metalness: 0,
-        color: 0xe4e4e4,
+        color: 0xffffff,
         transmission: 1,
-        ior: 2
+        ior: 2,
+        reflectivity: 1
     })
 )
 scene.add(sphere)
@@ -92,14 +89,25 @@ const setTexture = async value => {
 }
 
 const setEnvironment = value => {
+    document.getElementById('loader').style.display = 'flex'
     value = parseInt(value)
     setTexture(value)
     loader.load(hdrTextureURL, texture => {
         scene.background = texture,
         scene.environment = texture,
-        texture.mapping = THREE.EquirectangularReflectionMapping
+        texture.mapping = THREE.EquirectangularReflectionMapping,
+        document.getElementById('loader').style.display = 'none'
     })
     imageIndex = value
+}
+
+const scaleObject = value => {
+    gsap.to(sphere.scale, .5, { 
+        x: value, 
+        y: value, 
+        z: value
+    })
+    document.getElementById('dimensionValue').innerHTML = 'x' + value
 }
 
 // PLAYGROUND SETUP
@@ -123,11 +131,17 @@ showButton.addEventListener('click', () => {
 
 document.getElementById('changeBackground').addEventListener('change', event => {
     setEnvironment(event.target.value)
+    hideButton.disabled = false
+    showButton.disabled = true
 })
 
 document.getElementById('selectFov').addEventListener('change', (event) => {
     camera.fov = event.target.value
     camera.updateProjectionMatrix()
-    console.log(event.target.value)
     document.getElementById('fovValue').innerHTML = event.target.value
+})
+
+document.getElementById('selectDimension').addEventListener('change', (event) => {
+    let value = event.target.value / 100
+    scaleObject(value)
 })
